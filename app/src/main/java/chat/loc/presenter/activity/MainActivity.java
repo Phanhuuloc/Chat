@@ -10,9 +10,10 @@ import com.example.phoenix.myapplication.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import chat.loc.presenter.fragment.RosterFragment;
+import chat.loc.presenter.fragment.ContactListFragment;
+import chat.loc.presenter.fragment.dummy.DummyContent;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ContactListFragment.OnListFragmentInteractionListener {
 
     @BindView(R.id.frgmt_content)
     FrameLayout frgmtContent;
@@ -30,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void initialize() {
         FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().attach(new RosterFragment()).commit();
+        fm.beginTransaction().add(R.id.frgmt_content, new ContactListFragment())
+                .commit();
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
     }
 }
